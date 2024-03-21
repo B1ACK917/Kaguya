@@ -10,7 +10,7 @@ import Cocoa
 @main
 class AppDelegate: NSObject, NSApplicationDelegate {
 
-    
+    private let menu_bar = MenuBar()
 
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
