@@ -18,6 +18,7 @@ class MenuBar {
     
     private func init_ui() {
         if let button = kaguya.button {
+            button.title = "Hide"
             button.image = NSImage(named: "KaguyaIcon")
             button.target = self
             button.action = #selector(self.switchStatus(sender:))
@@ -30,8 +31,10 @@ class MenuBar {
     }
     
     @objc func switchStatus(sender: NSStatusBarButton) {
-        print(self.expand)
         self.expand = !self.expand
         seperator.length = self.expand ? NSStatusItem.variableLength : 10000
+        if let button = kaguya.button {
+            button.title = self.expand ? "Hide" : "Show"
+        }
     }
 }
