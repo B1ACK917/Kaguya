@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  Kaguya
 //
-//  Created by 冯大纬 on 2024/3/21.
+//  Created by Feng Dawei on 2024/3/21.
 //
 
 import Cocoa
