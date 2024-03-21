@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		5617AD7E2BAC034B00009846 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5617AD7D2BAC034B00009846 /* AppDelegate.swift */; };
-		5617AD802BAC034B00009846 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5617AD7F2BAC034B00009846 /* ViewController.swift */; };
 		5617AD822BAC034C00009846 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5617AD812BAC034C00009846 /* Assets.xcassets */; };
 		5617AD852BAC034C00009846 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 5617AD842BAC034C00009846 /* Base */; };
 		5617AD8D2BAC037800009846 /* MenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5617AD8C2BAC037800009846 /* MenuBar.swift */; };
@@ -18,7 +17,6 @@
 /* Begin PBXFileReference section */
 		5617AD7A2BAC034B00009846 /* Kaguya.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kaguya.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5617AD7D2BAC034B00009846 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		5617AD7F2BAC034B00009846 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		5617AD812BAC034C00009846 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5617AD842BAC034C00009846 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5617AD862BAC034C00009846 /* Kaguya.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Kaguya.entitlements; sourceTree = "<group>"; };
@@ -59,7 +57,6 @@
 				5617AD912BAC296000009846 /* Core */,
 				5617AD902BAC293E00009846 /* Utils */,
 				5617AD7D2BAC034B00009846 /* AppDelegate.swift */,
-				5617AD7F2BAC034B00009846 /* ViewController.swift */,
 				5617AD812BAC034C00009846 /* Assets.xcassets */,
 				5617AD832BAC034C00009846 /* Main.storyboard */,
 				5617AD862BAC034C00009846 /* Kaguya.entitlements */,
@@ -153,7 +150,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5617AD802BAC034B00009846 /* ViewController.swift in Sources */,
 				5617AD7E2BAC034B00009846 /* AppDelegate.swift in Sources */,
 				5617AD8D2BAC037800009846 /* MenuBar.swift in Sources */,
 				5617AD8F2BAC292A00009846 /* NSViewExt.swift in Sources */,
@@ -310,6 +306,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = CyberDz.Kaguya;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -336,6 +333,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = CyberDz.Kaguya;
 				PRODUCT_NAME = "$(TARGET_NAME)";
