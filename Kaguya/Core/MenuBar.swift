@@ -11,14 +11,17 @@ class MenuBar {
 //  Member Variables
     private let kaguya = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
     private let seperator = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
+    private let widthOnHide:CGFloat = 10000
     private var expand = true
+    private var autoHide = true
     
 //  Member Functions
     init() {
-        init_ui()
+        self.initUI()
+        self.checkIfNeedStartAutoHide()
     }
     
-    private func init_ui() {
+    private func initUI() {
         if let button = self.kaguya.button {
             button.title = "Hide"
             button.image = NSImage(named: "KaguyaIcon")
@@ -31,6 +34,15 @@ class MenuBar {
             button.image = NSImage(named: "SeperatorIcon")
         }
     }
+    
+    @objc private func handleClickOnKaguya(sender: NSStatusBarButton) {
+        let event = NSApp.currentEvent!
+            if event.type == NSEvent.EventType.rightMouseUp {
+                self.showKaguyaMenu()
+            } else {
+                self.switchStatus()
+            }
+    }
 
 //  Guard the seperator always be at the left side of kaguya icon
     private func isKaguyaPositionValid()->Bool {
@@ -41,29 +53,32 @@ class MenuBar {
         return kaguyaPosition >= seperatorPosition
     }
     
-    @objc func handleClickOnKaguya(sender: NSStatusBarButton) {
-        let event = NSApp.currentEvent!
-            if event.type == NSEvent.EventType.rightMouseUp {
-//                print("Right click, self.showKaguyaMenu()")
-                self.showKaguyaMenu()
-            } else {
-//                print("Left click, self.switchStatus()")
-                self.switchStatus()
-            }
-    }
-    
-    @objc func switchStatus() {
+    @objc private func switchStatus() {
         if self.isKaguyaPositionValid() {
             self.expand = !self.expand
-            seperator.length = self.expand ? NSStatusItem.variableLength : 10000
-            if let button = kaguya.button {
-                button.title = self.expand ? "Hide" : "Show"
-            }
+            seperator.length = self.expand ? NSStatusItem.variableLength : self.widthOnHide
+            kaguya.button?.title = self.expand ? "Hide" : "Show"
+            self.checkIfNeedStartAutoHide()
         }
     }
     
-    @objc func toggleAutoHide() {
-//    To be implemented.
+    @objc private func switchToHide() {
+        if self.isKaguyaPositionValid() {
+            self.expand = false
+            seperator.length = self.widthOnHide
+            kaguya.button?.title = "Show"
+        }
+    }
+    
+    private func checkIfNeedStartAutoHide() {
+        if self.isKaguyaPositionValid() && self.expand && self.autoHide {
+            Timer.scheduledTimer(timeInterval: 10.0, target: self, selector: #selector(self.switchToHide), userInfo: nil, repeats: false)
+        }
+    }
+    
+    @objc private func toggleAutoHide() {
+        self.autoHide = !self.autoHide
+        self.checkIfNeedStartAutoHide()
     }
     
     private func showKaguyaMenu() {
@@ -73,7 +88,8 @@ class MenuBar {
         switchStatusItem.target = self
         menu.addItem(switchStatusItem)
         
-        let toggleAutoHideItem = NSMenuItem(title: "Toggle Auto Hide", action: #selector(self.toggleAutoHide), keyEquivalent: "t")
+        let autoHideStatus = self.autoHide ? "On" : "Off"
+        let toggleAutoHideItem = NSMenuItem(title: "Toggle Auto Hide (\(autoHideStatus))", action: #selector(self.toggleAutoHide), keyEquivalent: "t")
         toggleAutoHideItem.target = self
         menu.addItem(toggleAutoHideItem)
         
