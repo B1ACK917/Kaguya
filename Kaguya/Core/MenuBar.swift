@@ -129,6 +129,9 @@ class MenuBar {
         for hideInterval in [5, 10, 15, 30, 60] {
             let menuItem = NSMenuItem(title: "\(hideInterval) Secs", action: #selector(self.changeAutoHideInterval(sender:)), keyEquivalent: "")
             menuItem.tag = hideInterval
+            if Int(self.autoHideInterval) == hideInterval {
+                menuItem.state = .on
+            }
             menuItem.target = self
             hideIntervalSubMenu.addItem(menuItem)
         }
