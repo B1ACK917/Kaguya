@@ -13,9 +13,9 @@
 
 ## Install
 
-[Download Link](https://github.com/B1ACK917/Kaguya/releases/tag/v1.1.0)
+[Download Link](https://github.com/B1ACK917/Kaguya/releases)
 
-Download the zip, uncompress it, and drag the Kaguya.app to your Application.
+Find the latest release, download the zip, uncompress it, and drag the Kaguya.app to your Applications folder.
 
 
 
