@@ -8,14 +8,16 @@
 import AppKit
 
 class MenuBar {
-//  Member Variables
+    
+    //  Member Variables
     private let kaguya = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
     private let seperator = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
-    private let widthOnHide:CGFloat = 10000
+    private let widthOnHide: CGFloat = 10000
     private var expand = true
     private var autoHide = true
+    private var autoHideTimer: Timer?
     
-//  Member Functions
+    //  Member Functions
     init() {
         self.initUI()
         self.checkIfNeedStartAutoHide()
@@ -37,19 +39,19 @@ class MenuBar {
     
     @objc private func handleClickOnKaguya(sender: NSStatusBarButton) {
         let event = NSApp.currentEvent!
-            if event.type == NSEvent.EventType.rightMouseUp {
-                self.showKaguyaMenu()
-            } else {
-                self.switchStatus()
-            }
+        if event.type == NSEvent.EventType.rightMouseUp {
+            self.showKaguyaMenu()
+        } else {
+            self.switchStatus()
+        }
     }
-
-//  Guard the seperator always be at the left side of kaguya icon
-    private func isKaguyaPositionValid()->Bool {
+    
+    //  Guard the seperator always be at the left side of kaguya icon
+    private func isKaguyaPositionValid() -> Bool {
         guard
             let kaguyaPosition = self.kaguya.button?.getOrigin?.x,
             let seperatorPosition = self.seperator.button?.getOrigin?.x
-            else {return false}
+        else {return false}
         return kaguyaPosition >= seperatorPosition
     }
     
@@ -68,11 +70,22 @@ class MenuBar {
             seperator.length = self.widthOnHide
             kaguya.button?.title = "Show"
         }
+        self.destroyAutoHideTimer()
+    }
+    
+    private func destroyAutoHideTimer() {
+        self.autoHideTimer?.invalidate()
+        self.autoHideTimer = nil
     }
     
     private func checkIfNeedStartAutoHide() {
-        if self.isKaguyaPositionValid() && self.expand && self.autoHide {
-            Timer.scheduledTimer(timeInterval: 10.0, target: self, selector: #selector(self.switchToHide), userInfo: nil, repeats: false)
+        if !self.autoHide {
+            self.destroyAutoHideTimer()
+        }
+        else {
+            if self.isKaguyaPositionValid() && self.expand && (self.autoHideTimer == nil) {
+                self.autoHideTimer = Timer.scheduledTimer(timeInterval: 10.0, target: self, selector: #selector(self.switchToHide), userInfo: nil, repeats: false)
+            }
         }
     }
     
