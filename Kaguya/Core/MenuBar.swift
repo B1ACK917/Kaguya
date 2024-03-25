@@ -114,10 +114,6 @@ class MenuBar {
     private func showKaguyaMenu() {
         let menu = NSMenu()
         
-        let switchStatusItem = NSMenuItem(title: "Switch", action: #selector(self.switchStatus), keyEquivalent: "s")
-        switchStatusItem.target = self
-        menu.addItem(switchStatusItem)
-        
         let autoHideStatus = self.autoHide ? "On" : "Off"
         let toggleAutoHideItem = NSMenuItem(title: "Toggle Auto Hide", action: #selector(self.toggleAutoHide), keyEquivalent: "t")
         if #available(macOS 14.0, *) {
