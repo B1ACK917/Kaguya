@@ -12,6 +12,7 @@
 		5617AD852BAC034C00009846 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 5617AD842BAC034C00009846 /* Base */; };
 		5617AD8D2BAC037800009846 /* MenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5617AD8C2BAC037800009846 /* MenuBar.swift */; };
 		5617AD8F2BAC292A00009846 /* NSViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5617AD8E2BAC292A00009846 /* NSViewExt.swift */; };
+		5655B23F2BB29D3C0032EFE2 /* KGYConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5655B23E2BB29D3C0032EFE2 /* KGYConstants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		5617AD862BAC034C00009846 /* Kaguya.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Kaguya.entitlements; sourceTree = "<group>"; };
 		5617AD8C2BAC037800009846 /* MenuBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBar.swift; sourceTree = "<group>"; };
 		5617AD8E2BAC292A00009846 /* NSViewExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSViewExt.swift; sourceTree = "<group>"; };
+		5655B23E2BB29D3C0032EFE2 /* KGYConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KGYConstants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 			isa = PBXGroup;
 			children = (
 				5617AD8E2BAC292A00009846 /* NSViewExt.swift */,
+				5655B23E2BB29D3C0032EFE2 /* KGYConstants.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -151,6 +154,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5617AD7E2BAC034B00009846 /* AppDelegate.swift in Sources */,
+				5655B23F2BB29D3C0032EFE2 /* KGYConstants.swift in Sources */,
 				5617AD8D2BAC037800009846 /* MenuBar.swift in Sources */,
 				5617AD8F2BAC292A00009846 /* NSViewExt.swift in Sources */,
 			);

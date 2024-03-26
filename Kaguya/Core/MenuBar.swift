@@ -15,7 +15,7 @@ class MenuBar {
     private let separator = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
     
     // Constant
-    private let widthOnHide: CGFloat = 10000
+    private let widthOnHide: CGFloat = KGYConstants.separatorWidthOnHide
     
     // User Preferences Variables
     @AppStorage("expand") private var expand = true
@@ -114,6 +114,7 @@ class MenuBar {
     private func showKaguyaMenu() {
         let menu = NSMenu()
         
+        // Auto hide switch
         let autoHideStatus = self.autoHide ? "On" : "Off"
         let toggleAutoHideItem = NSMenuItem(title: "Toggle Auto Hide", action: #selector(self.toggleAutoHide), keyEquivalent: "t")
         if #available(macOS 14.0, *) {
@@ -124,6 +125,7 @@ class MenuBar {
         toggleAutoHideItem.target = self
         menu.addItem(toggleAutoHideItem)
         
+        // Auto hide Interval
         let hideIntervalControlItem = NSMenuItem(title: "Hide Interval", action: nil, keyEquivalent: "")
         let hideIntervalSubMenu = NSMenu()
         for hideInterval in [5, 10, 15, 30, 60] {
@@ -140,7 +142,11 @@ class MenuBar {
         
         menu.addItem(NSMenuItem.separator())
         
-        menu.addItem(NSMenuItem(title: "Quit", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q"))
+        let quitItem = NSMenuItem(title: "Quit", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q")
+        menu.addItem(quitItem)
+        
+        let infoItem = NSMenuItem(title: "Kaguya \(KGYConstants.version)", action: nil, keyEquivalent: "")
+        menu.addItem(infoItem)
         
         self.kaguya.menu = menu
         self.kaguya.button?.performClick(nil)
