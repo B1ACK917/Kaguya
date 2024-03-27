@@ -115,8 +115,8 @@ class MenuBar {
         let menu = NSMenu()
         
         // Auto hide switch
-        let autoHideStatus = self.autoHide ? "On" : "Off"
-        let toggleAutoHideItem = NSMenuItem(title: "Toggle Auto Hide", action: #selector(self.toggleAutoHide), keyEquivalent: "t")
+        let autoHideStatus = self.autoHide ? String(localized: "On") : String(localized: "Off")
+        let toggleAutoHideItem = NSMenuItem(title: String(localized: "Toggle Auto Hide"), action: #selector(self.toggleAutoHide), keyEquivalent: "t")
         if #available(macOS 14.0, *) {
             toggleAutoHideItem.badge = NSMenuItemBadge(string: autoHideStatus)
         } else {
@@ -126,10 +126,10 @@ class MenuBar {
         menu.addItem(toggleAutoHideItem)
         
         // Auto hide Interval
-        let hideIntervalControlItem = NSMenuItem(title: "Hide Interval", action: nil, keyEquivalent: "")
+        let hideIntervalControlItem = NSMenuItem(title: String(localized: "Hide Interval"), action: nil, keyEquivalent: "")
         let hideIntervalSubMenu = NSMenu()
         for hideInterval in [5, 10, 15, 30, 60] {
-            let menuItem = NSMenuItem(title: "\(hideInterval) Secs", action: #selector(self.changeAutoHideInterval(sender:)), keyEquivalent: "")
+            let menuItem = NSMenuItem(title: String(localized: "\(hideInterval) Secs"), action: #selector(self.changeAutoHideInterval(sender:)), keyEquivalent: "")
             menuItem.tag = hideInterval
             if Int(self.autoHideInterval) == hideInterval {
                 menuItem.state = .on
@@ -142,7 +142,7 @@ class MenuBar {
         
         menu.addItem(NSMenuItem.separator())
         
-        let quitItem = NSMenuItem(title: "Quit", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q")
+        let quitItem = NSMenuItem(title: String(localized: "Quit"), action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q")
         menu.addItem(quitItem)
         
         let infoItem = NSMenuItem(title: "Kaguya \(KGYConstants.version)", action: nil, keyEquivalent: "")
